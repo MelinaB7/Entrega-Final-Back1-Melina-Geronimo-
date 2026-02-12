@@ -1,0 +1,47 @@
+<h1>🛒 Tu carrito</h1>
+
+<div id="contenedor-carrito"></div>
+
+<a href="/">← Seguir comprando</a>
+
+<script>
+async function cargarCarrito() {
+
+  const contenedor = document.getElementById("contenedor-carrito");
+
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  if (carrito.length === 0) {
+    contenedor.innerHTML = "<h2>Tu carrito está vacío</h2>";
+    return;
+  }
+
+  // pedir productos reales al servidor
+  const response = await fetch("/api/products");
+  const productos = await response.json();
+
+  let html = "";
+
+  carrito.forEach(item => {
+
+    const producto = productos.find(p => p._id === item.id);
+
+    if (producto) {
+      html += `
+        <div style="border:1px solid #ccc; padding:15px; margin:10px;">
+          <h3>${producto.nombre}</h3>
+          <p>${producto.descripcion}</p>
+          <p>Precio: $${producto.precio}</p>
+          <p>Cantidad: ${item.cantidad}</p>
+          <p><strong>Subtotal: $${producto.precio * item.cantidad}</strong></p>
+        </div>
+      `;
+    }
+
+  });
+
+  contenedor.innerHTML = html;
+}
+
+cargarCarrito();
+</script>

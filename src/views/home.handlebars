@@ -1,0 +1,38 @@
+<h1>Productos</h1>
+
+{{#each productos}}
+  <div>
+    <h3>{{this.nombre}}</h3>
+    <p>{{this.descripcion}}</p>
+    <p>Precio: ${{this.precio}}</p>
+    <p>Stock: {{this.cantidad}}</p>
+
+    <button onclick="agregarAlCarrito('{{this._id}}')">
+      Agregar al carrito
+    </button>
+  </div>
+  <hr>
+{{/each}}
+
+<!-- ACA ABAJO -->
+<script>
+async function agregarAlCarrito(idProducto) {
+
+  let cartId = localStorage.getItem("cartId");
+
+  // si no existe carrito → crearlo
+  if (!cartId) {
+    const response = await fetch("/api/carts", { method: "POST" });
+    const data = await response.json();
+    cartId = data._id;
+    localStorage.setItem("cartId", cartId);
+  }
+
+  // agregar producto al carrito
+  await fetch(`/api/carts/${cartId}/product/${idProducto}`, {
+    method: "POST"
+  });
+
+  alert("Producto agregado al carrito 🛒");
+}
+</script>
