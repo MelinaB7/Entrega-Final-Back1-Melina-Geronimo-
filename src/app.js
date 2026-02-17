@@ -27,7 +27,7 @@ app.use('/cart', cartRouter);
 
 app.get('/', async (req, res) => {
   //res.send("ok");
-  res.render('main');
+  res.render('main', { layout: false });
 });
 
 // MongoDB
