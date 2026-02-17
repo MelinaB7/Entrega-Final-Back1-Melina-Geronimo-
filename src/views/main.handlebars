@@ -205,15 +205,15 @@
         <div class="filter-sidebar p-3">
           <div class="d-flex align-items-center justify-content-between mb-3">
             <h5 class="mb-0 fw-bold" style="font-size:1rem;">Filters</h5>
-            <button class="btn btn-sm btn-link text-decoration-none p-0" style="color: var(--brand); font-size:.8rem;" onclick="resetFilters()">
+            <!--<button class="btn btn-sm btn-link text-decoration-none p-0" style="color: var(--brand); font-size:.8rem;" onclick="resetFilters()">
               Clear all
-            </button>
+            </button>-->
           </div>
 
           <hr>
 
           <!-- Name Filter -->
-          <div class="mb-4">
+          <!--<div class="mb-4">
             <h6 class="mb-2">Name</h6>
             <input
               type="text"
@@ -222,44 +222,35 @@
               placeholder="Filter by name..."
               onkeyup="filterProducts()"
             >
-          </div>
+          </div> -->
 
           <!-- Category Filter -->
           <div class="mb-4">
             <h6 class="mb-2">Category</h6>
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" value="electronics" id="catElectronics" onchange="filterProducts()">
-              <label class="form-check-label" for="catElectronics">Electronics</label>
+              <input class="form-check-input" type="checkbox" value="ropa" id="ropa" name="category" onchange="onlyOne(this); filterProducts()">
+              <label class="form-check-label" for="ropa">Ropa</label>
             </div>
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" value="clothing" id="catClothing" onchange="filterProducts()">
-              <label class="form-check-label" for="catClothing">Clothing</label>
+              <input class="form-check-input" type="checkbox" value="calzado" id="calzado" name="category" onchange="onlyOne(this); filterProducts()">
+              <label class="form-check-label" for="calzado">Calzado</label>
             </div>
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" value="home" id="catHome" onchange="filterProducts()">
-              <label class="form-check-label" for="catHome">Home &amp; Living</label>
-            </div>
-            <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" value="accessories" id="catAccessories" onchange="filterProducts()">
-              <label class="form-check-label" for="catAccessories">Accessories</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="sports" id="catSports" onchange="filterProducts()">
-              <label class="form-check-label" for="catSports">Sports</label>
+              <input class="form-check-input" type="checkbox" value="accesorios" id="accesorios" name="category" onchange="onlyOne(this); filterProducts()">
+              <label class="form-check-label" for="accesorios">Accesorios</label>
             </div>
           </div>
 
-          <!-- Price Filter -->
-          <div class="mb-3">
-            <h6 class="mb-2">Price Range</h6>
+      <div class="mb-3">
+            <h6 class="mb-2">Paginación</h6>
             <div class="d-flex gap-2">
               <div>
-                <label class="form-label mb-1" style="font-size:.75rem;">Min ($)</label>
-                <input type="number" id="priceMin" class="form-control form-control-sm" placeholder="0" min="0" onchange="filterProducts()">
+                <label class="form-label mb-1" style="font-size:.75rem;">Pagina</label>
+                <input type="number" id="page" class="form-control form-control-sm" placeholder="0" min="1" onchange="filterProducts()">
               </div>
               <div>
-                <label class="form-label mb-1" style="font-size:.75rem;">Max ($)</label>
-                <input type="number" id="priceMax" class="form-control form-control-sm" placeholder="1000" min="0" onchange="filterProducts()">
+                <label class="form-label mb-1" style="font-size:.75rem;">Limite de Pagina</label>
+                <input type="number" id="limit" class="form-control form-control-sm" placeholder="10" min="1" onchange="filterProducts()">
               </div>
             </div>
           </div>
@@ -276,10 +267,8 @@
             <label class="form-label mb-0 results-info">Sort by:</label>
             <select class="form-select form-select-sm" style="width:auto;" id="sortSelect" onchange="filterProducts()">
               <option value="default">Default</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="name-asc">Name: A to Z</option>
-              <option value="name-desc">Name: Z to A</option>
+              <option value="asc">Precio: Bajo a Alto</option>
+              <option value="dsc">Precio: Alto a Bajo</option>
             </select>
           </div>
         </div>
